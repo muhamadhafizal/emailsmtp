@@ -17,3 +17,8 @@ $router->get('/', function () use ($router) {
 
 Route::get('/email/index','EmailController@index');
 Route::get('/email','EmailController@mail');
+
+Route::get('/user','UserController@index');
+Route::post('/user/add', 'UserController@store');
+Route::get('user/all', 'UserController@all');
+Route::get('user/details', 'UserController@details');

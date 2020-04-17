@@ -12,21 +12,21 @@ class EmailController extends Controller {
         return response()->json('mail engine');
     }
     
-    public function mail()
+    public function mail(Request $request)
     {
 
-      //$id = $request->input('id');
+      $id = $request->input('id');
   
-      //$users = User::where('id',$id)->first();
+      $user = User::where('id',$id)->first();
 
-      $messages = 'hello hafizal';
-      $receiver = 'hafizal@synapse.my';
+      $messages = 'congrates, you successfull register in our system';
+      $subject = 'new message from admin system';
 
-         Mail::raw( $messages ,function ($message) use($receiver)
+         Mail::raw( $messages ,function ($message) use($user,$subject)
            {
-            $message->to($receiver);
-            $message->from('testemaillumen123@gmail.com', 'Admin');
-            $message->subject('5% off all our website');
+            $message->to($user->email);
+            $message->from('ijaldev16@gmail.com', 'Admin System');
+            $message->subject($subject);
 
 
             });
